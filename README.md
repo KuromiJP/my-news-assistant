@@ -1,6 +1,6 @@
 # my-news-assistant
 
-This repo stores the *human-readable* configuration for 李强’s daily news briefing (assistant name: **hotdog**).
+This repo stores the *human-readable* configuration + long-term preferences/memory notes for 李强’s daily news briefing (assistant name: **hotdog**).
 
 ## What it does
 
