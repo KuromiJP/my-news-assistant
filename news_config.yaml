@@ -1,0 +1,58 @@
+# my-news-assistant
+# News briefing preferences for 李强 ("hotdog" assistant)
+# Timezone is handled by OpenClaw cron (Asia/Shanghai @ 09:00 daily)
+
+assistant:
+  name: hotdog
+
+schedule:
+  timezone: Asia/Shanghai
+  time: "09:00"
+  cadence: daily  # includes weekends
+
+delivery:
+  channel: dingtalk
+  chat: group
+  style:
+    default_items: 3
+    allow_overflow_for_major_events: true
+    per_item_format:
+      - title
+      - one_sentence_summary
+      - one_sentence_why_it_matters
+      - source_links
+  mention: "@Kuromi"
+
+topics:
+  - name: AI
+    scope: global
+    include:
+      - foundation_models
+      - chips_and_hardware
+      - AI_apps
+      - major_product_releases
+      - major_partnerships
+      - regulation_and_policy
+      - M&A
+      - funding
+
+  - name: Stock Market — Hot / High-potential Companies
+    scope: global
+    include:
+      - earnings_and_guidance
+      - financing
+      - major_contracts_partnerships
+      - regulation_and_policy
+      - M&A
+      - product_launches
+      - unusual_price_moves_and_drivers
+
+sources:
+  preference: "authority_first"
+  search_strategy:
+    prefer: searxng
+    cross_validate_when_needed: true
+
+notes:
+  - "Keep it concise; 3 items by default."
+  - "Break the 3-item limit only for market-moving or must-know events."
