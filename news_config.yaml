@@ -54,16 +54,16 @@ sources:
     cross_validate_when_needed: true
 
 watchlist:
-  markets: []          # e.g. ["US", "CN-A", "HK"]
-  companies: []        # e.g. ["NVDA", "MSFT", "TSLA", "ASML", "TSM"]
-  sectors: []          # e.g. ["Semiconductors", "AI Software", "Robotics"]
+  markets: ["GLOBAL"]
+  # You said: focus on AI-related companies (broad watch rather than a fixed list).
+  # We track by sectors/themes and add specific tickers later if you want.
+  companies: []
+  sectors: ["AI", "Semiconductors", "Cloud/Datacenter", "AI Software/Apps", "Robotics"]
   indicators:
-    # Add rules you care about. Examples:
-    # - "Earnings: revenue/GM/guide surprises"
-    # - "Price move: >= 5% daily move + stated catalyst"
-    # - "AI policy/regulation updates"
-    - "AI product/model releases and major partnerships"
-    - "Market-moving events: regulation/policy, major M&A, black swans"
+    - "Company-specific: earnings/guidance, financing, major partnerships/contracts, M&A, product releases"
+    - "Policy/regulation: AI governance, chip export controls, antitrust, data/privacy rules impacting AI firms"
+    - "Market moves: unusual price/volume moves with clear catalysts (when available)"
+    - "Market-moving events: major regulation/policy, major M&A, black swans"
 
 notes:
   - "Keep it concise; 3 items by default."
