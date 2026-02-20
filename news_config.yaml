@@ -53,6 +53,18 @@ sources:
     prefer: searxng
     cross_validate_when_needed: true
 
+watchlist:
+  markets: []          # e.g. ["US", "CN-A", "HK"]
+  companies: []        # e.g. ["NVDA", "MSFT", "TSLA", "ASML", "TSM"]
+  sectors: []          # e.g. ["Semiconductors", "AI Software", "Robotics"]
+  indicators:
+    # Add rules you care about. Examples:
+    # - "Earnings: revenue/GM/guide surprises"
+    # - "Price move: >= 5% daily move + stated catalyst"
+    # - "AI policy/regulation updates"
+    - "AI product/model releases and major partnerships"
+    - "Market-moving events: regulation/policy, major M&A, black swans"
+
 notes:
   - "Keep it concise; 3 items by default."
   - "Break the 3-item limit only for market-moving or must-know events."
