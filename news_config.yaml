@@ -21,7 +21,7 @@ delivery:
       - one_sentence_summary
       - one_sentence_why_it_matters
       - source_links
-  mention: "@Kuromi"
+  mention: ""  # disabled per 李强 (2026-02-20)
 
 topics:
   - name: AI
