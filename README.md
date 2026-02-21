@@ -8,7 +8,7 @@ This repo stores the *human-readable* configuration + long-term preferences/memo
 - Focus:
   - **AI** (global)
   - **Global stock-market hot / high-potential companies** (earnings, financing, M&A, product launches, regulation, major moves)
-- Default **3 items**, but can exceed when there is a clear market-moving / must-explain event
+- Default **5 items**, but can exceed when there is a clear market-moving / must-explain event
 - Each item includes: title + 1-sentence summary + 1-sentence why-it-matters + source links
 - Ends with **@Kuromi**
 
