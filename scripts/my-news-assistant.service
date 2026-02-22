@@ -1,0 +1,25 @@
+[Unit]
+Description=my-news-assistant static server (hotdog)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=admin
+WorkingDirectory=/home/admin/.openclaw/workspace/my-news-assistant
+Environment=PORT=9090
+Environment=DISABLE_AUTH=1
+Environment=PUBLIC_DIR=/home/admin/.openclaw/data/my-news-assistant/public
+ExecStart=/usr/bin/node /home/admin/.openclaw/workspace/my-news-assistant/server.js
+Restart=always
+RestartSec=2
+
+# Hardening (safe defaults)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/home/admin/.openclaw/data/my-news-assistant/public
+
+[Install]
+WantedBy=multi-user.target
