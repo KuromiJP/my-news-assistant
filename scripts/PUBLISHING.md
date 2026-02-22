@@ -6,7 +6,7 @@ This repo includes a tiny static server (`server.js`) with optional HTTP Basic A
 
 Provide a link like:
 
-- http://<SERVER_IP>:8080/
+- http://<SERVER_IP>:9090/
 
 and show:
 - `/latest.html`
@@ -32,6 +32,7 @@ Start:
 ```bash
 set -a; source .env; set +a
 node server.js
+# visit: http://<SERVER_IP>:9090/
 ```
 
 ## Where generated summaries live
