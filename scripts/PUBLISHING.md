@@ -1,6 +1,6 @@
 # Publishing notes
 
-This repo includes a tiny basic-auth static server (`server.js`).
+This repo includes a tiny static server (`server.js`) with optional HTTP Basic Auth.
 
 ## Goal
 
@@ -19,7 +19,12 @@ Create `.env` (not committed):
 
 ```bash
 cp .env.example .env
-# edit BASIC_AUTH_USER/BASIC_AUTH_PASS
+# For MVP without password:
+#   DISABLE_AUTH=1
+# For password protection (recommended on public Internet):
+#   DISABLE_AUTH=0
+#   BASIC_AUTH_USER=...
+#   BASIC_AUTH_PASS=...
 ```
 
 Start:

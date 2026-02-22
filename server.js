@@ -18,11 +18,12 @@ const path = require('path');
 const PORT = parseInt(process.env.PORT || '8080', 10);
 const USER = process.env.BASIC_AUTH_USER || '';
 const PASS = process.env.BASIC_AUTH_PASS || '';
+const DISABLE_AUTH = (process.env.DISABLE_AUTH || '').toLowerCase() === '1' || (process.env.DISABLE_AUTH || '').toLowerCase() === 'true';
 const PUBLIC_DIR = path.resolve(process.env.PUBLIC_DIR || path.join(__dirname, 'public'));
 
-if (!USER || !PASS) {
-  console.error('[my-news-assistant] Missing BASIC_AUTH_USER/BASIC_AUTH_PASS env vars. Refusing to start.');
-  process.exit(1);
+const AUTH_ENABLED = !DISABLE_AUTH && USER && PASS;
+if (!AUTH_ENABLED) {
+  console.warn('[my-news-assistant] WARNING: Basic Auth is DISABLED (set BASIC_AUTH_USER/BASIC_AUTH_PASS to enable, or DISABLE_AUTH=0).');
 }
 
 function unauthorized(res) {
@@ -31,6 +32,7 @@ function unauthorized(res) {
 }
 
 function isAuthed(req) {
+  if (!AUTH_ENABLED) return true;
   const hdr = req.headers['authorization'];
   if (!hdr || !hdr.startsWith('Basic ')) return false;
   const b64 = hdr.slice('Basic '.length);
@@ -99,5 +101,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`[my-news-assistant] Serving ${PUBLIC_DIR} on http://0.0.0.0:${PORT} (basic auth enabled)`);
+  console.log(`[my-news-assistant] Serving ${PUBLIC_DIR} on http://0.0.0.0:${PORT} (${AUTH_ENABLED ? 'basic auth enabled' : 'NO AUTH'})`);
 });
