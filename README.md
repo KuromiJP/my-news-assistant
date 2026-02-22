@@ -9,8 +9,8 @@ This repo stores the *human-readable* configuration + long-term preferences/memo
   - **AI** (global)
   - **Global stock-market hot / high-potential companies** (earnings, financing, M&A, product launches, regulation, major moves)
 - Default **5 items**, but can exceed when there is a clear market-moving / must-explain event
-- Each item includes: title + 1-sentence summary + 1-sentence why-it-matters + source links
-- Ends with **@Kuromi**
+- Each item includes: title + 1-sentence summary + **impact analysis (my assessment)** + source links
+- Mention: none (no @Kuromi)
 
 > Scheduling/execution is handled by OpenClaw cron; this repo is the source-of-truth for preferences.
 

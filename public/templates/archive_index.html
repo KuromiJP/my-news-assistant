@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>hotdog · 历史归档</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .list a{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;margin:10px 0;background:rgba(255,255,255,.02)}
+    .list a:hover{background:rgba(96,165,250,.08)}
+    .stamp{color:var(--muted);font-size:13px;white-space:nowrap}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="h1">hotdog · 历史归档</h1>
+      <div class="meta">按时间倒序</div>
+    </div>
+
+    <div class="card">
+      <div class="nav">
+        <a href="/">首页</a>
+        <a href="/latest.html">最新</a>
+      </div>
+      <hr />
+      <div class="list">
+        {{ARCHIVE_LINKS}}
+      </div>
+      <hr />
+      <div class="small">提示：归档文件名格式建议为 <code>YYYY-MM-DD-HHMM.html</code></div>
+    </div>
+  </div>
+</body>
+</html>
