@@ -4,7 +4,7 @@ This repo stores the *human-readable* configuration + long-term preferences/memo
 
 ## What it does
 
-- **Every day at 09:00 (Asia/Shanghai)**, push a short briefing to DingTalk group chat
+- **Every day at 09:00 and 20:00 (Asia/Shanghai)**, push a short briefing to DingTalk group chat
 - Focus:
   - **AI** (global)
   - **Global stock-market hot / high-potential companies** (earnings, financing, M&A, product launches, regulation, major moves)

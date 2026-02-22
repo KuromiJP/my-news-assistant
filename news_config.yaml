@@ -7,7 +7,7 @@ assistant:
 
 schedule:
   timezone: Asia/Shanghai
-  time: "09:00"
+  times: ["09:00", "20:00"]
   cadence: daily  # includes weekends
 
 delivery:
