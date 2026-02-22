@@ -33,6 +33,15 @@
 
       {{ITEMS_HTML}}
 
+      <script>
+        // Add stable anchors to items (so homepage can link to #item-N)
+        for (const [idx, h] of Array.from(document.querySelectorAll('.item-title')).entries()) {
+          const id = `item-${idx+1}`;
+          const wrap = h.closest('.item');
+          if (wrap && !wrap.id) wrap.id = id;
+        }
+      </script>
+
       <hr />
       <div class="small">生成时间：{{GENERATED_AT}}</div>
     </div>

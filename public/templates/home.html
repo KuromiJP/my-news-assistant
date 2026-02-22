@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>hotdog · 新闻摘要</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    @media (min-width: 920px){.grid{grid-template-columns: 1.2fr .8fr}}
+    .kpi{display:flex;flex-wrap:wrap;gap:10px}
+    .kpi .badge{background:rgba(255,255,255,.02)}
+    .list a{display:block;padding:10px 12px;border:1px solid var(--border);border-radius:12px;margin:10px 0;background:rgba(255,255,255,.02)}
+    .list a:hover{background:rgba(96,165,250,.08)}
+    .list .muted{color:var(--muted);font-size:13px;margin-top:6px}
+    .section-title{margin:0 0 8px;font-size:14px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+    .headline{margin:0 0 10px;font-size:20px}
+    .note{color:var(--muted);font-size:13px}
+    .recent a{display:flex;justify-content:space-between;gap:12px}
+    .stamp{color:var(--muted);font-size:13px;white-space:nowrap}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="h1">hotdog · 新闻摘要</h1>
+      <div class="meta">{{NOW}} · 09:00 / 20:00 · GLOBAL</div>
+    </div>
+
+    <div class="kpi">
+      <span class="badge">最新：{{LATEST_STAMP}}</span>
+      <span class="badge">默认 5 条（重大事件可加更）</span>
+      <span class="badge"><a href="/topics.html">关注主题</a></span>
+      <span class="badge"><a href="/archive/">历史归档</a></span>
+    </div>
+
+    <div class="grid" style="margin-top:14px">
+      <div class="card">
+        <div class="section-title">(1) 最新摘要预览</div>
+        <h2 class="headline"><a href="/latest.html">打开最新完整内容 →</a></h2>
+        <div class="list">
+          {{LATEST_PREVIEW}}
+        </div>
+        <div class="note">仅展示标题预览；点击进入最新页查看完整摘要/评价与来源。</div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="section-title">(2) 今日重点 / hotdog 结论</div>
+          <div class="pre" style="margin:0">{{TODAY_FOCUS}}</div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">(4) 最近归档</div>
+          <div class="list recent">
+            {{RECENT_ARCHIVE}}
+          </div>
+          <div class="note">更多历史：<a href="/archive/">/archive/</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
