@@ -79,12 +79,34 @@ const server = http.createServer((req, res) => {
     if (st.isDirectory()) {
       const idx = path.join(filePath, 'index.html');
       fs.readFile(idx, (e2, buf) => {
-        if (e2) {
-          res.writeHead(403);
-          return res.end('Forbidden');
+        if (!e2) {
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+          return res.end(buf);
         }
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        res.end(buf);
+        // No index.html: generate a simple directory listing
+        fs.readdir(filePath, { withFileTypes: true }, (e3, entries) => {
+          if (e3) {
+            res.writeHead(403);
+            return res.end('Forbidden');
+          }
+          const baseUrl = req.url.endsWith('/') ? req.url : req.url + '/';
+          const items = entries
+            .filter(d => d.name !== '.DS_Store')
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(d => {
+              const slash = d.isDirectory() ? '/' : '';
+              const name = d.name + slash;
+              const href = baseUrl + encodeURIComponent(d.name) + slash;
+              return `<li><a href="${href}">${name}</a></li>`;
+            })
+            .join('\n');
+          const html = `<!doctype html><meta charset="utf-8"><title>Index of ${baseUrl}</title>` +
+            `<h1>Index of ${baseUrl}</h1><ul>` +
+            `<li><a href="../">../</a></li>` + items +
+            `</ul>`;
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+          res.end(html);
+        });
       });
       return;
     }
