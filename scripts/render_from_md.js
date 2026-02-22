@@ -43,6 +43,35 @@ const tplPath = path.join(__dirname, '..', 'public', 'templates', 'briefing.html
 
 function read(p){return fs.readFileSync(p,'utf8');}
 function esc(s){return String(s).replace(/[&<>\"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+function escRe(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+
+// Highlight important keywords in the analysis block.
+// Configure via env: HIGHLIGHT_WORDS (comma-separated)
+const DEFAULT_HIGHLIGHTS = [
+  '关注', '重点看', '后续', '风险', '利好', '利空', '催化', '不确定性',
+  '监管', '政策', '出口管制', '合规', '反垄断',
+  '财报', '指引', 'Capex', '订单', '交付', '良率',
+  '并购', '融资', '估值', '供给', '需求', '价格', '毛利'
+];
+const HIGHLIGHT_WORDS = (process.env.HIGHLIGHT_WORDS || '')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean);
+const HIGHLIGHTS = (HIGHLIGHT_WORDS.length ? HIGHLIGHT_WORDS : DEFAULT_HIGHLIGHTS)
+  .filter(Boolean);
+
+function highlight(text){
+  if (!text) return '';
+  // Escape first, then inject spans (safe because we only add our own tags)
+  let out = esc(text);
+  // Longest first to avoid partial overlaps
+  const words = [...new Set(HIGHLIGHTS)].sort((a,b)=> b.length - a.length);
+  for (const w of words) {
+    const re = new RegExp(escRe(esc(w)), 'g');
+    out = out.replace(re, `<span class="hl">${esc(w)}</span>`);
+  }
+  return out;
+}
 
 const md = read(mdPath);
 const tpl = read(tplPath);
@@ -76,7 +105,7 @@ const itemsHtml = items.map((it, i) => {
     : '';
 
   const summaryHtml = it.summary ? `<div class="section summary"><div class="label">摘要</div><div>${esc(it.summary)}</div></div>` : '';
-  const analysisHtml = it.analysis ? `<div class="section analysis"><div class="label">评价 / 影响分析</div><div>${esc(it.analysis)}</div></div>` : '';
+  const analysisHtml = it.analysis ? `<div class="section analysis"><div class="label">评价 / 影响分析</div><div>${highlight(it.analysis)}</div></div>` : '';
 
   return `\n<div class="item">` +
     `<h2 class="item-title">${i+1}. ${esc(it.title)}</h2>` +
