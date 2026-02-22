@@ -65,6 +65,11 @@ const server = http.createServer((req, res) => {
   if (!isAuthed(req)) return unauthorized(res);
 
   const urlPath = req.url === '/' ? '/index.html' : req.url;
+  // User preference: only serve HTML (hide .md endpoints)
+  if (urlPath.toLowerCase().endsWith('.md')) {
+    res.writeHead(404);
+    return res.end('Not found');
+  }
   const filePath = safeJoin(PUBLIC_DIR, urlPath);
   if (!filePath) {
     res.writeHead(400);
