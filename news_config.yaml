@@ -47,6 +47,44 @@ topics:
       - product_launches
       - unusual_price_moves_and_drivers
 
+  - name: Macro — Rates / Inflation / Central Banks
+    scope: global
+    include:
+      - fed_ecb_boj_pboC_policy
+      - inflation_and_jobs
+      - yields_fx_risk_appetite
+
+  - name: Energy & Commodities
+    scope: global
+    include:
+      - oil_gas_supply_demand
+      - opec_plus
+      - industrial_metals_copper
+
+  - name: Geopolitics & Supply Chain / Export Controls
+    scope: global
+    include:
+      - sanctions
+      - export_controls
+      - critical_materials
+      - shipping_disruptions
+
+  - name: Biotech & Pharma
+    scope: global
+    include:
+      - clinical_trials
+      - approvals
+      - pricing_and_reimbursement
+      - M&A
+
+  - name: Crypto / Digital Finance Infrastructure
+    scope: global
+    include:
+      - regulation
+      - etf_flows
+      - stablecoins
+      - market_liquidity
+
 sources:
   preference: "authority_first"
   search_strategy:
